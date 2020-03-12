@@ -59,8 +59,7 @@
 
 		<!-- Right navbar links -->
 		<ul class="navbar-nav ml-auto">
-			<li class="dropdown user user-menu" style="width: 300px;
-    text-align: right;">
+			<li class="dropdown user user-menu" style="width: 300px;text-align: right;">
 	            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 	              <span class="hidden-xs"><?php echo $this->ion_auth->user()->row()->username; ?></span>
 	            </a>
@@ -92,7 +91,9 @@
 			<!-- Sidebar user panel (optional) -->
 			<div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center">
 				<div class="image text-center">
-					<img src="<?php echo base_url().'/assets/logo.png' ?>" class="w-50" alt="User Image">
+					<a href="<?php echo base_url().'/admin' ?>">
+						<img src="<?php echo base_url().'/assets/logo.png' ?>" class="w-50" alt="User Image">
+					</a>
 				</div>
 			</div>
 
@@ -100,7 +101,7 @@
 			<nav class="mt-2">
 				<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 					<li>
-						<a href="#" class="nav-link">
+						<a href="<?php echo base_url().'admin' ?>" class="nav-link">
 							<i class="nav-icon fas fa-tachometer-alt"></i>
 							<p class="pl-1">
 								Dashboard
@@ -109,8 +110,8 @@
 						</a>
 					</li>
 					<li>
-						<a href="#" class="nav-link">
-							<i class="nav-icon fas fa-tachometer-alt"></i>
+						<a href="<?php echo base_url().'labors/' ?>" class="nav-link">
+							<i class="nav-icon fas fa-user"></i>
 							<p class="pl-2">
 								Labors
 							</p>

@@ -22,8 +22,6 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/inc/header');
-		$this->load->view('admin/index');
-		$this->load->view('admin/inc/footer');
+		$this->__randerview('admin/index');
 	}
 }

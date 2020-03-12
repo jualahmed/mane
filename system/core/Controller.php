@@ -87,6 +87,13 @@ class CI_Controller {
 		log_message('info', 'Controller Class Initialized');
 	}
 
+	public function __randerview($view='',$data='')
+	{
+		$this->load->view('admin/inc/header',$data);
+		$this->load->view($view,$data);
+		$this->load->view('admin/inc/footer',$data);
+	}
+
 	// --------------------------------------------------------------------
 
 	/**
