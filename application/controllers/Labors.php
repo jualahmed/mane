@@ -6,47 +6,115 @@ class Labors extends CI_Controller {
 	public $data = [];
 
 	public function index($value='')
-	{
+
+	{   
 		$this->data['users'] = $this->ion_auth->users()->result();
 		$this->__randerview('admin/labors/index',$this->data);
 	}
 
-	public function create()
-	{
-		$this->data['title'] = $this->lang->line('create_user_heading');
 
-		// if (!$this->ion_auth->logged_in() || !$this->ion_auth->is_admin())
-		// {
-		// 	redirect('auth', 'refresh');
-		// }
+ public function delete($id){
+ 	
+ $this->db->where('id', $id);
+ $this->db->delete('users');
 
-		$tables = $this->config->item('tables', 'ion_auth');
-		$identity_column = $this->config->item('identity', 'ion_auth');
-		$this->data['identity_column'] = $identity_column;
+ $this->session->set_flashdata('message', 'Record deleted successfully');
+			redirect("labors/index", 'refresh');
 
-		// validate form input
-		$this->form_validation->set_rules('phone', 'phone', 'required');
-		$this->form_validation->set_rules('company', 'company', 'required');
-		$this->form_validation->set_rules('email', 'email', 'required');
+}
+ public function edit_action($id){
+ $query = $this->db->get_where('users', array('id' => $id));
+ $result['data'] = $query->result();
+			// validate form input
+$this->form_validation->set_rules('first_name', 'First Name', 'required');
+$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+$this->form_validation->set_rules('father_name', 'Name of father', 'required');
+$this->form_validation->set_rules('mother_name', 'Name of mother', 'required');
+$this->form_validation->set_rules('email', 'Email', 'required');
+$this->form_validation->set_rules('company', 'Company name', 'required');
+$this->form_validation->set_rules('bloodgroup', 'Blood group', 'required');
+$this->form_validation->set_rules('emergency_phone', 'Emergency mobile no', 'required');
+$this->form_validation->set_rules('phone', 'Mobile No', 'required');
 
-		if ($this->form_validation->run() === TRUE)
-		{
-			$email = strtolower($this->input->post('email'));
-			$identity = ($identity_column === 'email') ? $email : $this->input->post('identity');
-			$password = $this->input->post('password');
+
+		if ($this->form_validation->run() == TRUE)
+		{ 
+
+			$data = $this->input->post();
 
 			$object = [
-				'first_name' => $this->input->post('first_name'),
-				'last_name' => $this->input->post('last_name'),
-				'company' => $this->input->post('company'),
-				'phone' => $this->input->post('phone'),
+				'first_name' => $data['first_name'],
+				'last_name' => $data['last_name'],
+				'father_name' => $data['father_name'],
+				'mother_name' => $data['mother_name'],
+				'email' => $data['email'],
+				'company' => $data['company'],
+				'bloodgroup' => $data['bloodgroup'],
+				'emergency_phone' => $data['emergency_phone'],
+				'phone' => $data['phone']
 			];
+
+			$this->db->where('id', $id);
+			$this->db->update('users', $object);
+
+			$this->session->set_flashdata('message', 'Record updated successfully');
+			redirect("labors/index", 'refresh');
+		}else{
+					$this->__randerview('admin/labors/edit', $result);
+
 		}
-		if ($this->form_validation->run() === TRUE)
-		{
+
+}
+public function edit($id = ''){
+
+
+ $query = $this->db->get_where('users', array('id' => $id));
+ $result['data'] = $query->result();
+
+$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
+
+$this->__randerview('admin/labors/edit',$result);
+
+
+}
+
+	public function create()
+	{
+
+		
+		// validate form input
+$this->form_validation->set_rules('first_name', 'First Name', 'required');
+$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+$this->form_validation->set_rules('father_name', 'Name of father', 'required');
+$this->form_validation->set_rules('mother_name', 'Name of mother', 'required');
+$this->form_validation->set_rules('email', 'Email', 'required');
+$this->form_validation->set_rules('company', 'Company name', 'required');
+$this->form_validation->set_rules('bloodgroup', 'Blood group', 'required');
+$this->form_validation->set_rules('emergency_phone', 'Emergency mobile no', 'required');
+$this->form_validation->set_rules('phone', 'Mobile No', 'required');
+
+
+		if ($this->form_validation->run() == TRUE)
+		{ 
+
+			$data = $this->input->post();
+
+			$object = [
+				'first_name' => $data['first_name'],
+				'last_name' => $data['last_name'],
+				'father_name' => $data['father_name'],
+				'mother_name' => $data['mother_name'],
+				'email' => $data['email'],
+				'company' => $data['company'],
+				'bloodgroup' => $data['bloodgroup'],
+				'emergency_phone' => $data['emergency_phone'],
+				'phone' => $data['phone']
+			];
+
+
 			$this->db->insert('users', $object);
 
-			$this->session->set_flashdata('message', $this->ion_auth->messages());
+			$this->session->set_flashdata('message', 'One Record entered successfully');
 			redirect("labors/index", 'refresh');
 		}
 		else
@@ -89,7 +157,7 @@ class Labors extends CI_Controller {
 				'type' => 'text',
 				'value' => $this->form_validation->set_value('phone'),
 			];
-			$this->__randerview('admin/labors/create',$this->data);
+		 $this->__randerview('admin/labors/create',$this->data);
 		}
 	}
 

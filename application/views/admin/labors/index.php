@@ -25,22 +25,34 @@
 		<a class="btn btn-success" href="<?php echo base_url().'labors/create' ?>">Create Labors</a>
 		<br>
 		<br>
+    <?php if($this->session->flashdata('message')){?>
+
+ <div id="infoMessage" style="font-size: 20px;
+    color: green;
+    font-weight: bold;">
+      <?php echo $this->session->flashdata('message');?>
+        <br>
+      </div>
+
+    <?php } ?>
+   
 		<table class="table table-bordered" cellpadding=0 cellspacing=10>
 			<tr>
 				<th>First Name</th>
 				<th>Last Name</th>
-				<th>Email</th>
+				<th>Mobile No</th>
 				<th>Action</th>
 			</tr>
 			<?php foreach ($users as $user):?>
 				<tr>
 		            <td><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></td>
 		            <td><?php echo htmlspecialchars($user->last_name,ENT_QUOTES,'UTF-8');?></td>
-		            <td><?php echo htmlspecialchars($user->email,ENT_QUOTES,'UTF-8');?></td>
+		            <td><?php echo htmlspecialchars($user->phone,ENT_QUOTES,'UTF-8');?></td>
 					
 					<td>
-						<a href="" class="btn btn-danger btn-sm">Delete</a>
-						<a href="" class="btn btn-success btn-sm">Edit</a>
+						
+						<a href="<?php echo base_url();?>labors/edit/<?php echo $user->id?>" class="btn btn-success btn-sm">Edit</a>
+            <a href="<?php echo base_url();?>labors/delete/<?php echo $user->id?>" onclick="return confirm('Are you sure you want to Remove this record?');" class="btn btn-danger btn-sm">Delete</a>
 					</td>
 				</tr>
 			<?php endforeach;?>
