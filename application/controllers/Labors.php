@@ -6,40 +6,33 @@ class Labors extends CI_Controller {
 	public $data = [];
 
 	public function index($value='')
-
 	{   
 		$this->data['users'] = $this->ion_auth->users()->result();
 		$this->__randerview('admin/labors/index',$this->data);
 	}
 
+	public function delete($id){
+		$this->db->where('id', $id);
+		$this->db->delete('users');
+		$this->session->set_flashdata('message', 'Record deleted successfully');
+					redirect("labors/index", 'refresh');
+	}
 
- public function delete($id){
- 	
- $this->db->where('id', $id);
- $this->db->delete('users');
-
- $this->session->set_flashdata('message', 'Record deleted successfully');
-			redirect("labors/index", 'refresh');
-
-}
- public function edit_action($id){
- $query = $this->db->get_where('users', array('id' => $id));
- $result['data'] = $query->result();
-			// validate form input
-$this->form_validation->set_rules('first_name', 'First Name', 'required');
-$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-$this->form_validation->set_rules('father_name', 'Name of father', 'required');
-$this->form_validation->set_rules('mother_name', 'Name of mother', 'required');
-$this->form_validation->set_rules('email', 'Email', 'required');
-$this->form_validation->set_rules('company', 'Company name', 'required');
-$this->form_validation->set_rules('bloodgroup', 'Blood group', 'required');
-$this->form_validation->set_rules('emergency_phone', 'Emergency mobile no', 'required');
-$this->form_validation->set_rules('phone', 'Mobile No', 'required');
-
+	public function edit_action($id){
+		$query = $this->db->get_where('users', array('id' => $id));
+		$result['data'] = $query->result();
+		$this->form_validation->set_rules('first_name', 'First Name', 'required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+		$this->form_validation->set_rules('father_name', 'Name of father', 'required');
+		$this->form_validation->set_rules('mother_name', 'Name of mother', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('company', 'Company name', 'required');
+		$this->form_validation->set_rules('bloodgroup', 'Blood group', 'required');
+		$this->form_validation->set_rules('emergency_phone', 'Emergency mobile no', 'required');
+		$this->form_validation->set_rules('phone', 'Mobile No', 'required');
 
 		if ($this->form_validation->run() == TRUE)
 		{ 
-
 			$data = $this->input->post();
 
 			$object = [
@@ -60,39 +53,31 @@ $this->form_validation->set_rules('phone', 'Mobile No', 'required');
 			$this->session->set_flashdata('message', 'Record updated successfully');
 			redirect("labors/index", 'refresh');
 		}else{
-					$this->__randerview('admin/labors/edit', $result);
-
+			$this->__randerview('admin/labors/edit', $result);
 		}
+	}
 
-}
-public function edit($id = ''){
+	public function edit($id = ''){
+		$query = $this->db->get_where('users', array('id' => $id));
+		$result['data'] = $query->result();
 
+		$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
 
- $query = $this->db->get_where('users', array('id' => $id));
- $result['data'] = $query->result();
-
-$this->data['message'] = (validation_errors() ? validation_errors() : ($this->ion_auth->errors() ? $this->ion_auth->errors() : $this->session->flashdata('message')));
-
-$this->__randerview('admin/labors/edit',$result);
-
-
-}
+		$this->__randerview('admin/labors/edit',$result);
+	}
 
 	public function create()
 	{
-
-		
 		// validate form input
-$this->form_validation->set_rules('first_name', 'First Name', 'required');
-$this->form_validation->set_rules('last_name', 'Last Name', 'required');
-$this->form_validation->set_rules('father_name', 'Name of father', 'required');
-$this->form_validation->set_rules('mother_name', 'Name of mother', 'required');
-$this->form_validation->set_rules('email', 'Email', 'required');
-$this->form_validation->set_rules('company', 'Company name', 'required');
-$this->form_validation->set_rules('bloodgroup', 'Blood group', 'required');
-$this->form_validation->set_rules('emergency_phone', 'Emergency mobile no', 'required');
-$this->form_validation->set_rules('phone', 'Mobile No', 'required');
-
+		$this->form_validation->set_rules('first_name', 'First Name', 'required');
+		$this->form_validation->set_rules('last_name', 'Last Name', 'required');
+		$this->form_validation->set_rules('father_name', 'Name of father', 'required');
+		$this->form_validation->set_rules('mother_name', 'Name of mother', 'required');
+		$this->form_validation->set_rules('email', 'Email', 'required');
+		$this->form_validation->set_rules('company', 'Company name', 'required');
+		$this->form_validation->set_rules('bloodgroup', 'Blood group', 'required');
+		$this->form_validation->set_rules('emergency_phone', 'Emergency mobile no', 'required');
+		$this->form_validation->set_rules('phone', 'Mobile No', 'required');
 
 		if ($this->form_validation->run() == TRUE)
 		{ 
