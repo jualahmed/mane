@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>lo</title>
+	<title> RA group | Admin Login </title>
 	<link rel="stylesheet" href="<?php echo base_url() ?>assets/dist/css/adminlte.min.css">
 </head>
 <body class="hold-transition login-page">
