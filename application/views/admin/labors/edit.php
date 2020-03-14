@@ -34,7 +34,7 @@
 			<div class="card text-center">
 				<div class="card-body login-card-body">
 					<?php foreach($data as $row){?>	
-					<form action="<?php echo base_url().'labors/edit_action/'?><?php echo $row->id;?>" method="post" accept-charset="utf-8">
+					<form action="<?php echo base_url().'labors/edit_action/'?><?php echo $row->id;?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 							
 							<p class="text-left">
 								<label for="first_name">First Name</label>
@@ -77,6 +77,14 @@
 					<input placeholder="Company Name" class="form-control" type="text" name="company" value="<?php echo $row->company; ?>" id="bloodgroup">
 								<div class="error"><?php echo form_error('company');?></div>
 
+							</p>
+
+							<p><img style="height: 100px; width: 100px;" src="<?php echo base_url();?>assets/labor_profile/<?php echo $row->picture;?>" alt="">
+
+								<label for="image">Change image</label>
+								<br> <br>
+					<input class="form-control" type="file" name="picture">
+								<div class="error"><?php echo form_error('picture');?></div>
 							</p>
 
 							

@@ -6,9 +6,15 @@ class Labors extends CI_Controller {
 	public $data = [];
 
 	public function index($value='')
+
 	{   
-		$this->data['users'] = $this->ion_auth->users()->result();
-		$this->__randerview('admin/labors/index',$this->data);
+		
+		   	$this->db->select("*");
+		    $this->db->from("users");
+		    $this->db->order_by("id", "desc");
+		    $query = $this->db->get();
+		    $this->data['users'] =  $query->result();
+		    $this->__randerview('admin/labors/index',$this->data);
 	}
 
 	
@@ -43,6 +49,14 @@ class Labors extends CI_Controller {
 		{ 
 			$data = $this->input->post();
 
+			$config['upload_path']          = './assets/labor_profile/';
+             $config['allowed_types']        = 'gif|jpg|png';
+             $this->load->library('upload', $config);
+
+             $this->upload->do_upload('picture');
+             $upload_data = $this->upload->data(); 
+             $file_name = $upload_data['file_name'];
+
 			$object = [
 				'first_name' => $data['first_name'],
 				'last_name' => $data['last_name'],
@@ -50,6 +64,7 @@ class Labors extends CI_Controller {
 				'mother_name' => $data['mother_name'],
 				'email' => $data['email'],
 				'company' => $data['company'],
+				'picture' => $file_name,
 				'bloodgroup' => $data['bloodgroup'],
 				'emergency_phone' => $data['emergency_phone'],
 				'phone' => $data['phone']
@@ -93,9 +108,10 @@ class Labors extends CI_Controller {
 			$data = $this->input->post();
 
 
-			 $config['upload_path']          = './uploads/';
+			 $config['upload_path']          = './assets/labor_profile/';
              $config['allowed_types']        = 'gif|jpg|png';
              $this->load->library('upload', $config);
+
              $this->upload->do_upload('picture');
              $upload_data = $this->upload->data(); 
              $file_name = $upload_data['file_name'];

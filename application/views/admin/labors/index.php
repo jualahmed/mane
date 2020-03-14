@@ -40,22 +40,24 @@
 			<tr>
 				<th>First Name</th>
 				<th>Last Name</th>
-				<th>Mobile No</th>
 				<th>Father Name</th>
 				<th>Mother Name</th>
 				<th>Blood Group</th>
+				<th>Mobile No</th>
 				<th>Emergency Mobile</th>
+				<th>image</th>
 				<th>Action</th>
 			</tr>
 			<?php foreach ($users as $user):?>
 			<tr>
 				<td><?php echo htmlspecialchars($user->first_name,ENT_QUOTES,'UTF-8');?></td>
 				<td><?php echo htmlspecialchars($user->last_name,ENT_QUOTES,'UTF-8');?></td>
-				<td><?php echo $user->father_name?></td>
+				<td><?php echo $user->father_name;?></td>
 				<td><?php echo $user->mother_name?></td>
 				<td><?php echo $user->bloodgroup?></td>
-				<td><?php echo $user->emergency_phone?></td>
-				<td><?php echo htmlspecialchars($user->phone,ENT_QUOTES,'UTF-8');?></td>
+				<td><?php echo $user->phone?></td>
+				<td><?php echo htmlspecialchars($user->emergency_phone,ENT_QUOTES,'UTF-8');?></td>
+				<td><img style="height: 50px; width: 50px;" src="<?php echo base_url();?>assets/labor_profile/<?php echo $user->picture;?>" alt=""></td>
 				<td>
 					<a href="<?php echo base_url();?>labors/edit/<?php echo $user->id?>" class="btn btn-success btn-sm">Edit</a>
 					<a href="<?php echo base_url();?>labors/delete/<?php echo $user->id?>" onclick="return confirm('Are you sure you want to Remove this record?');" class="btn btn-danger btn-sm">Delete</a>
