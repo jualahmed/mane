@@ -25,6 +25,7 @@ class Labors extends CI_Controller {
  public function edit_action($id){
  $query = $this->db->get_where('users', array('id' => $id));
  $result['data'] = $query->result();
+ 
 			// validate form input
 $this->form_validation->set_rules('first_name', 'First Name', 'required');
 $this->form_validation->set_rules('last_name', 'Last Name', 'required');
@@ -99,6 +100,14 @@ $this->form_validation->set_rules('phone', 'Mobile No', 'required');
 
 			$data = $this->input->post();
 
+
+			 $config['upload_path']          = './uploads/';
+             $config['allowed_types']        = 'gif|jpg|png';
+             $this->load->library('upload', $config);
+             $this->upload->do_upload('picture');
+             $upload_data = $this->upload->data(); 
+             $file_name = $upload_data['file_name'];
+
 			$object = [
 				'first_name' => $data['first_name'],
 				'last_name' => $data['last_name'],
@@ -106,6 +115,7 @@ $this->form_validation->set_rules('phone', 'Mobile No', 'required');
 				'mother_name' => $data['mother_name'],
 				'email' => $data['email'],
 				'company' => $data['company'],
+				'picture' => $upload_data['file_name'],
 				'bloodgroup' => $data['bloodgroup'],
 				'emergency_phone' => $data['emergency_phone'],
 				'phone' => $data['phone']

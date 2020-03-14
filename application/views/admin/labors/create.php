@@ -33,7 +33,7 @@
 
 			<div class="card text-center">
 				<div class="card-body login-card-body">
-					<form action="<?php echo base_url().'labors/create' ?>" method="post" accept-charset="utf-8">
+					<form action="<?php echo base_url().'labors/create' ?>" method="post" accept-charset="utf-8" enctype="multipart/form-data">
 
 							<p class="text-left">
 								<label for="first_name">First Name</label>
@@ -75,6 +75,14 @@
 								<br>
 					<input placeholder="Company Name" class="form-control" type="text" name="company" value="" id="bloodgroup">
 								<div class="error"><?php echo form_error('company');?></div>
+
+							</p>
+
+								<p class="text-left">
+								<label for="image">Upload Labor image</label>
+								<br>
+					<input class="form-control" type="file" name="picture">
+								<div class="error"><?php echo form_error('picture');?></div>
 
 							</p>
 
