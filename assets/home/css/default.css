@@ -1,0 +1,50 @@
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,600,700');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,700,800');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:700');
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,700,900');
+
+
+/*[Bootstrap Core CSS]*/
+@import url('./bootstrap.min.css');
+@import url('./bootstrap.min-1.css');
+
+/*[Animation CSS]*/
+@import "./animate.css";
+
+/*[Hover effects CSS]*/
+@import "./component-2.css";
+@import "./hover.css";
+@import "./modern-hover.css";
+
+/*[Fonts CSS]*/
+/* @import "./font-awesome.min.css"; */
+@import "./flaticon.css";
+
+/*[Hover effects CSS]*/
+@import "./circle-hover.css";
+
+/*[Shapes CSS]*/
+@import "./shapes.css";
+
+/*[OWL CAROUSEL CSS]*/
+@import "./owl.carousel.min.css";
+@import "./owl.theme.default.min.css";
+
+/*[Auto Arrange div CSS]*/
+@import "./mixitup.css";
+
+/*[Number scroller CSS]*/
+@import "./counter.css";
+
+/*[Default Theme CSS]*/
+@import "./style.css";
+
+/*[Responsive CSS]*/
+@import "./responsive.css";
+/*------------------------------css ends here-------------------------------------*/
+
+.footer-404 {
+	text-align:center;
+	padding:0 0 10px 0
+}

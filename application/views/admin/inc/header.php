@@ -100,16 +100,15 @@
 			<!-- Sidebar Menu -->
 			<nav class="mt-2">
 				<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-					<li>
+					<li class="nav-item">
 						<a href="<?php echo base_url().'admin' ?>" class="nav-link">
 							<i class="nav-icon fas fa-tachometer-alt"></i>
 							<p class="pl-1">
 								Dashboard
-								<i class="right fas fa-angle-left"></i>
 							</p>
 						</a>
 					</li>
-					<li>
+					<li class="nav-item">
 						<a href="<?php echo base_url().'labors/' ?>" class="nav-link">
 							<i class="nav-icon fas fa-user"></i>
 							<p class="pl-2">
@@ -117,6 +116,20 @@
 							</p>
 						</a>
 					</li>
+					<li class="nav-item">
+						<a href="<?php echo base_url().'labors/' ?>" class="nav-link">
+							<i class="nav-icon fas fa-money-check-alt"></i>
+							<p class="pl-2">
+								Labors Wages
+							</p>
+						</a>
+					</li>
+					<li class="nav-item">
+		                <a href="<?php echo base_url().'labors/' ?>" class="nav-link">
+		                  <i class="far fa-circle nav-icon"></i>
+		                  <p class="pl-2">Gallery</p>
+		                </a>
+             		</li>
 				</ul>
 			</nav>
 			<!-- /.sidebar-menu -->
