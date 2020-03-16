@@ -24,4 +24,6 @@ class Admin extends CI_Controller {
 	{
 		$this->__randerview('admin/index');
 	}
+
+	
 }

@@ -125,7 +125,7 @@
 						</a>
 					</li>
 					<li class="nav-item">
-		                <a href="<?php echo base_url().'labors/' ?>" class="nav-link">
+		                <a href="<?php echo base_url().'gallery/' ?>" class="nav-link">
 		                  <i class="far fa-circle nav-icon"></i>
 		                  <p class="pl-2">Gallery</p>
 		                </a>
